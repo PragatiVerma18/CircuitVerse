@@ -87,16 +87,97 @@ Make sure you have updated the username and password to your postgres username a
 ```
 $ rails db:create
 ```
-You might get an error stating `rails aborted`, so, try this:
+You might get an error stating `rails aborted`, so, try any of these:
+- ensure that you have installed npm correctly
+- ensure that you have installed nodejs correctly
+- ensure that you have installed yarn correctly
+> In case, you get the following error:
 ```
-$ sudo apt-get install nodejs 
+error @rails/webpacker@4.2.2: The engine "node" is incompatible with this module. Expected version ">=8.16.0". Got "8.10.0"
+error Found incompatible module.
 ```
-or
+then, try this:
 ```
-$sudo npm install --global yarn
+$ rm yarn.lock
+$ bundle
+$ sudo npm cache clean -f
+$ sudo npm install -g n
+$ sudo n stable
+$ sudo apt-get install --reinstall nodejs-legacy
+$ yarn install
 ```
-
 ## Step 6 — Run Migrations
 ```
 $ rails db:migrate
 ```
+You might encounter an error:
+## **```
+Redis::CommandError in LogixController#index
+
+```**
+To fix this, try:
+- ensure that your redis server is up and running
+```
+$ sudo systemctl start redis
+$ sudo systemctl status redis
+```
+You should see something that looks like this:
+
+```
+Output
+● redis.service - Redis Server
+   Loaded: loaded (/etc/systemd/system/redis.service; enabled; vendor preset: enabled)
+   Active: active (running) since Wed 2016-05-11 14:38:08 EDT; 1min 43s ago
+  Process: 3115 ExecStop=/usr/local/bin/redis-cli shutdown (code=exited, status=0/SUCCESS)
+ Main PID: 3124 (redis-server)
+    Tasks: 3 (limit: 512)
+   Memory: 864.0K
+      CPU: 179ms
+   CGroup: /system.slice/redis.service
+           └─3124 /usr/local/bin/redis-server 127.0.0.1:6379       
+
+. . .
+```
+- ensure that you have enabled Redis to Start at Boot
+
+```
+$ sudo systemctl enable redis
+```
+Output should look like this:
+```
+Created symlink from /etc/systemd/system/multi-user.target.wants/redis.service to /etc/systemd/system/redis.service.
+
+- comment requirepass (line 480 mostly) in redis.conf file if uncommented. 
+```
+$ sudo nano /etc/redis/redis.conf
+```
+and then restart the redis server using the following command:
+```
+$ sudo systemctl restart redis.service
+```
+
+### NOTE:
+If you have configured a password for your redis-server, try:
+```
+$ redis-cli -h <host.domain.com> -p <port> -a <yourpassword>
+```
+
+> Learn more about configuring your redis passoword. [Tutorial](https://www.digitalocean.com/community/tutorials/how-to-install-and-secure-redis-on-ubuntu-18-04)
+
+## Step 7 — Seed the database
+To seed the database with some sample data, run 
+```
+$ bundle exec rake db:seed.
+```
+The admin credentials after seeding will be:
+```
+User: Admin
+Email: admin@circuitverse.org
+Password: password
+```
+## Step 8 — Run Rails Server
+To run the rails server:
+```
+$ rails s -b 127.0.0.1 -p 8080
+```
+The local development server will be started at `127.0.0.1:8080` in your web browser. Open the browser to see the website.

@@ -71,7 +71,17 @@ $ bundle install
 ## Step 4 — Configure your PostgreSQL database
 Copy `config/database.example.yml` and paste into `config/database.yml` and update the Postgres credentials need to be updated to your currently running database.
 
-![Capture](https://user-images.githubusercontent.com/42115530/81856035-ceba7c00-957d-11ea-8aa8-5eef7233f1c1.PNG)
+!](https://user-images.githubusercontent.com/42115530/81856035-ceba7c00-957d-11ea-8aa8-5eef7233f1c1.PNG)
+
+## NOTE:
+Make sure you have updated the username and password to your postgres username and password as shown below.
+```
+  username: 'yourusername'
+  password: 'yourpassword'
+```
+
+![rails db](https://user-images.githubusercontent.com/42115530/81952842-928e2680-9624-11ea-86c1-f11611eccbfa.PNG)
+
 
 ## Step 5 — Create Database
 ```
@@ -80,6 +90,10 @@ $ rails db:create
 You might get an error stating `rails aborted`, so, try this:
 ```
 $ sudo apt-get install nodejs 
+```
+or
+```
+$sudo npm install --global yarn
 ```
 
 ## Step 6 — Run Migrations

@@ -13,6 +13,19 @@ If you don't see your idea listed, do one of the following:
 * **If your contribution is minor,** such as a typo fix, open a pull request.
 * **If your contribution is major,** such as a new feature/enhancement, start by opening an issue first. This way, other people can be also involved in the discussion before you do any work.
 
+## Version control branching
+- Always make a new branch for your work, no matter how small. This makes it easy for others to take just that one set of changes from your repository, in case you have multiple unrelated changes floating around.
+
+  * Don’t submit unrelated changes in the same branch/pull request! The maintainer shouldn’t have to reject your awesome bugfix because the feature you put in with it needs more review.
+- Base your new branch off of the appropriate branch on the main repository:
+
+  * Bug fixes should be based on the branch named after the **oldest supported release line the bug affects**.
+
+     * Bug fixes requiring large changes to the code or which have a chance of being otherwise disruptive, may need to base off of master       instead.
+  * New features should branch off of the **‘master’** branch.
+
+     * Note that depending on how long it takes for the dev team to merge your patch, the copy of master you worked off of may get out of date! If you find yourself ‘bumping’ a pull request that’s been sidelined for a while, make sure you **rebase or merge to latest master to ensure a speedier resolution**.
+
 ## Pull Request Process
 
 1. Create a branch. For example, if you are going to work on issue number #44 (which is, say, a new feature for ‘forgot password’ management):
@@ -30,6 +43,51 @@ If you don't see your idea listed, do one of the following:
 
 ## Community
 Discussions about CircuitVerse issues and features take place on the repository's [Issues](https://github.com/CircuitVerse/CircuitVerse/issues) and [Pull Requests](https://github.com/CircuitVerse/CircuitVerse/pulls) sections. Anybody is welcome to join these conversations. See the [README](README.md) for more information on communication channels.
+
+## Code of Conduct
+
+### Our Pledge
+
+In the interest of fostering an open and welcoming environment, we as
+contributors and maintainers pledge to making participation in our project and
+our community a harassment-free experience for everyone, regardless of age, body
+size, disability, ethnicity, gender identity and expression, level of experience,
+nationality, personal appearance, race, religion, or sexual identity and
+orientation.
+
+### Our Standards
+
+Examples of behavior that contributes to creating a positive environment
+include:
+
+* Using welcoming and inclusive language
+* Being respectful of differing viewpoints and experiences
+* Gracefully accepting constructive criticism
+* Focusing on what is best for the community
+* Showing empathy towards other community members
+
+Examples of unacceptable behavior by participants include:
+
+* The use of sexualized language or imagery and unwelcome sexual attention or
+advances
+* Trolling, insulting/derogatory comments, and personal or political attacks
+* Public or private harassment
+* Publishing others' private information, such as a physical or electronic
+  address, without explicit permission
+* Other conduct which could reasonably be considered inappropriate in a
+  professional setting
+
+### Our Responsibilities
+
+Project maintainers are responsible for clarifying the standards of acceptable
+behavior and are expected to take appropriate and fair corrective action in
+response to any instances of unacceptable behavior.
+
+Project maintainers have the right and responsibility to remove, edit, or
+reject comments, commits, code, wiki edits, issues, and other contributions
+that are not aligned to this Code of Conduct, or to ban temporarily or
+permanently any contributor for other behaviors that they deem inappropriate,
+threatening, offensive, or harmful.
 
 ## Contributors
 ### Financial Contributors
